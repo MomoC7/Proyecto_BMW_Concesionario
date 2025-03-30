@@ -6,7 +6,9 @@ db = connect_to_db()
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    # Obtener autos de MongoDB
+    cars = list(db.cars.find({}, {'_id': 0}))
+    return render_template('index.html', cars=cars)
 
 @app.route('/add-car', methods=['POST'])
 def add_car():

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
     <title>BMW Concesionario</title>
 </head>
 <body>
@@ -23,5 +24,24 @@
 
         <button type="submit">Agregar Auto</button>
     </form>
+    <br>
+    <h2>Autos Registrados</h2>
+    <br>
+    <table border="1">
+        <tr>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Año</th>
+            <th>Precio</th>
+        </tr>
+        {% for car in cars %}
+        <tr>
+            <td>{{ car.brand }}</td>
+            <td>{{ car.model }}</td>
+            <td>{{ car.year }}</td>
+            <td>{{ car.price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>
