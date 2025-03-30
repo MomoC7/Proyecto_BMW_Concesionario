@@ -6,7 +6,22 @@
     <title>BMW Concesionario</title>
 </head>
 <body>
-    <h1>Bienvenido al Concesionario BMW</h1>
-    <p>Formulario base para futuros desarrollos.</p>
+    <h1>Bienvenido al concesionario de BMW</h1>
+    <h2>Agregar Autos</h2>
+    <form action="/add-car" method="POST">
+        <label for="brand">Marca:</label>
+        <input type="text" id="brand" name="brand" required><br>
+
+        <label for="model">Modelo:</label>
+        <input type="text" id="model" name="model" required><br>
+
+        <label for="year">Año:</label>
+        <input type="number" id="year" name="year" required><br>
+
+        <label for="price">Precio:</label>
+        <input type="number" id="price" name="price" required><br>
+
+        <button type="submit">Agregar Auto</button>
+    </form>
 </body>
 </html>
