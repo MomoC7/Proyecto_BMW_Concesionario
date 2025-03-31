@@ -62,7 +62,7 @@ def edit_car():
         }
         # Renderizar la página con el formulario de edición
         cars = list(db.cars.find({}, {'_id': 0}))
-        return render_template('index.html', cars=cars, car_to_edit=current_data, error=None)
+        return render_template('index.html', cars=cars, car_to_edit=current_data, error=None, page=1, total_pages=1)
     except Exception as e:
         print("Error al cargar edición:", e)
         return "Error al cargar edición", 500
@@ -124,10 +124,35 @@ def search_cars():
             ]
         }, {'_id': 0}))
 
-        return render_template('index.html', cars=search_result, car_to_edit=None, error=None)
+        # Proporcionar valores predeterminados para 'page' y 'total_pages'
+        return render_template('index.html', cars=search_result, car_to_edit=None, error=None, page=1, total_pages=1)
     except Exception as e:
         print("Error durante la búsqueda:", e)
-        return render_template('index.html', cars=[], car_to_edit=None, error="Error durante la búsqueda.")
+        return render_template('index.html', cars=[], car_to_edit=None, error="Error durante la búsqueda.", page=1, total_pages=1)
+
+@app.route('/filter-by-price', methods=['GET'])
+def filter_by_price():
+    try:
+        min_price = float(request.args.get('min_price'))
+        max_price = float(request.args.get('max_price'))
+
+        # Verificar que el rango sea válido
+        if min_price > max_price:
+            raise ValueError("El precio mínimo no puede ser mayor que el precio máximo.")
+
+        # Realizar el filtro en MongoDB
+        filtered_cars = list(db.cars.find({
+            'price': {'$gte': min_price, '$lte': max_price}
+        }, {'_id': 0}))
+
+        # Renderizar resultados con valores predeterminados para paginación
+        return render_template('index.html', cars=filtered_cars, car_to_edit=None, error=None, page=1, total_pages=1)
+    except ValueError as ve:
+        print("Error de validación:", ve)
+        return render_template('index.html', cars=[], car_to_edit=None, error=str(ve), page=1, total_pages=1)
+    except Exception as e:
+        print("Error durante el filtrado:", e)
+        return render_template('index.html', cars=[], car_to_edit=None, error="Error durante el filtrado.", page=1, total_pages=1)
 
 if __name__ == '__main__':
     app.run(debug=True)

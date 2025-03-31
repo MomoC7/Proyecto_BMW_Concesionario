@@ -44,6 +44,17 @@
     <button type="submit">Buscar</button>
 </form>
 
+<!-- Formulario para filtrar autos por rango de precio -->
+<form action="/filter-by-price" method="GET" style="margin-bottom: 20px;">
+    <label for="min_price">Precio mínimo:</label>
+    <input type="number" id="min_price" name="min_price" required style="width: 100px; padding: 5px;">
+
+    <label for="max_price">Precio máximo:</label>
+    <input type="number" id="max_price" name="max_price" required style="width: 100px; padding: 5px;">
+
+    <button type="submit">Filtrar</button>
+</form>
+
     <br>
     <table border="1">
         <tr>
