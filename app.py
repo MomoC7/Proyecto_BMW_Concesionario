@@ -7,18 +7,21 @@ db = connect_to_db()
 @app.route('/')
 def index():
     try:
-        page = int(request.args.get('page', 1))  # Página actual, por defecto es 1
-        items_per_page = 5  # Número de autos por página
-        skip = (page - 1) * items_per_page  # Saltar registros según la página actual
+        sort = request.args.get('sort', 'brand')  # Valor por defecto: ordenar por marca
+        page = int(request.args.get('page', 1))  # Página actual
+        items_per_page = 5
+        skip = (page - 1) * items_per_page
 
-        cars = list(db.cars.find({}, {'_id': 0}).skip(skip).limit(items_per_page))
-        total_cars = db.cars.count_documents({})  # Total de autos en la base de datos
-        total_pages = (total_cars + items_per_page - 1) // items_per_page  # Total de páginas
+        # Ordenar los autos según el parámetro 'sort'
+        cars = list(db.cars.find({}, {'_id': 0}).sort(sort, 1).skip(skip).limit(items_per_page))
+        total_cars = db.cars.count_documents({})
+        total_pages = (total_cars + items_per_page - 1) // items_per_page
 
-        return render_template('index.html', cars=cars, car_to_edit=None, error=None, page=page, total_pages=total_pages)
+        # Enviar 'sort' como parte del contexto
+        return render_template('index.html', cars=cars, car_to_edit=None, error=None, page=page, total_pages=total_pages, sort=sort)
     except Exception as e:
         print("Error al cargar autos:", e)
-        return render_template('index.html', cars=[], car_to_edit=None, error="Error al cargar autos.", page=1, total_pages=1)
+        return render_template('index.html', cars=[], car_to_edit=None, error="Error al cargar autos.", page=1, total_pages=1, sort='brand')
 
 @app.route('/add-car', methods=['POST'])
 def add_car():

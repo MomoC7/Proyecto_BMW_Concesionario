@@ -44,6 +44,8 @@
     <button type="submit">Buscar</button>
 </form>
 
+<br>
+
 <!-- Formulario para filtrar autos por rango de precio -->
 <form action="/filter-by-price" method="GET" style="margin-bottom: 20px;">
     <label for="min_price">Precio mínimo:</label>
@@ -55,7 +57,17 @@
     <button type="submit">Filtrar</button>
 </form>
 
-    <br>
+<br>
+<br>
+
+<!-- Botones para ordenar -->
+<div style="margin-bottom: 10px;">
+    <a href="/?sort=brand" class="pagination-button">Ordenar por Marca</a>
+    <a href="/?sort=model" class="pagination-button">Ordenar por Modelo</a>
+    <a href="/?sort=year" class="pagination-button">Ordenar por Año</a>
+    <a href="/?sort=price" class="pagination-button">Ordenar por Precio</a>
+</div>
+
     <table border="1">
         <tr>
             <th>Marca</th>
@@ -91,14 +103,18 @@
         </tr>
         {% endfor %}
     </table>
-
+<br>
 <!-- Controles de paginación -->
-<div class="pagination">
+<!-- Paginación -->
+<div>
     {% if page > 1 %}
-    <a href="/?page={{ page - 1 }}" class="pagination-button">Anterior</a>
+        <a href="/?page={{ page - 1 }}&sort={{ sort }}" class="pagination-button">Anterior</a>
     {% endif %}
+    {% for p in range(1, total_pages + 1) %}
+        <a href="/?page={{ p }}&sort={{ sort }}" class="pagination-button" {% if p == page %}style="font-weight: bold;"{% endif %}>{{ p }}</a>
+    {% endfor %}
     {% if page < total_pages %}
-    <a href="/?page={{ page + 1 }}" class="pagination-button">Siguiente</a>
+        <a href="/?page={{ page + 1 }}&sort={{ sort }}" class="pagination-button">Siguiente</a>
     {% endif %}
 </div>
 
