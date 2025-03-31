@@ -139,3 +139,25 @@ input[type="text"]:focus {
     border: 1px solid #1a73e8;
     box-shadow: 0 0 5px rgba(26, 115, 232, 0.5);
 }
+
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination-button {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    background-color: #1a73e8;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-button:hover {
+    background-color: #155ab6;
+}

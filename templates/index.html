@@ -81,6 +81,16 @@
         {% endfor %}
     </table>
 
+<!-- Controles de paginación -->
+<div class="pagination">
+    {% if page > 1 %}
+    <a href="/?page={{ page - 1 }}" class="pagination-button">Anterior</a>
+    {% endif %}
+    {% if page < total_pages %}
+    <a href="/?page={{ page + 1 }}" class="pagination-button">Siguiente</a>
+    {% endif %}
+</div>
+
     <!-- Formulario para editar autos (opcional) -->
     {% if car_to_edit %}
     <h2>Editar Auto</h2>
