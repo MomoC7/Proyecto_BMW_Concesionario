@@ -8,6 +8,8 @@
 </head>
 <body>
     <h1>Bienvenido al concesionario de BMW</h1>
+    
+    <!-- Formulario para agregar autos -->
     <h2>Agregar Autos</h2>
     <form action="/add-car" method="POST">
         <label for="brand">Marca:</label>
@@ -25,6 +27,8 @@
         <button type="submit">Agregar Auto</button>
     </form>
     <br>
+    
+    <!-- Tabla para mostrar autos registrados -->
     <h2>Autos Registrados</h2>
     <br>
     <table border="1">
@@ -33,6 +37,7 @@
             <th>Modelo</th>
             <th>Año</th>
             <th>Precio</th>
+            <th>Acciones</th>
         </tr>
         {% for car in cars %}
         <tr>
@@ -40,8 +45,44 @@
             <td>{{ car.model }}</td>
             <td>{{ car.year }}</td>
             <td>{{ car.price }}</td>
+            <td>
+                <!-- Botón para editar -->
+                <form action="/edit-car" method="POST">
+                    <input type="hidden" name="brand" value="{{ car.brand }}">
+                    <input type="hidden" name="model" value="{{ car.model }}">
+                    <input type="hidden" name="year" value="{{ car.year }}">
+                    <input type="hidden" name="price" value="{{ car.price }}">
+                    <button type="submit">Editar</button>
+                </form>
+            </td>
         </tr>
         {% endfor %}
     </table>
+    
+    <!-- Formulario para editar autos -->
+    {% if car_to_edit %}
+    <h2>Editar Auto</h2>
+    <form action="/update-car" method="POST">
+        <label for="new_brand">Marca:</label>
+        <input type="text" id="new_brand" name="new_brand" value="{{ car_to_edit.brand }}" required><br>
+
+        <label for="new_model">Modelo:</label>
+        <input type="text" id="new_model" name="new_model" value="{{ car_to_edit.model }}" required><br>
+
+        <label for="new_year">Año:</label>
+        <input type="number" id="new_year" name="new_year" value="{{ car_to_edit.year }}" required><br>
+
+        <label for="new_price">Precio:</label>
+        <input type="number" id="new_price" name="new_price" value="{{ car_to_edit.price }}" required><br>
+
+        <!-- Valores actuales como referencia -->
+        <input type="hidden" name="brand" value="{{ car_to_edit.brand }}">
+        <input type="hidden" name="model" value="{{ car_to_edit.model }}">
+        <input type="hidden" name="year" value="{{ car_to_edit.year }}">
+        <input type="hidden" name="price" value="{{ car_to_edit.price }}">
+
+        <button type="submit">Actualizar Auto</button>
+    </form>
+    {% endif %}
 </body>
 </html>
