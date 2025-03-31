@@ -99,6 +99,25 @@ def delete_car():
     except Exception as e:
         print("Error al eliminar auto:", e)
         return "Error al eliminar auto", 500
+    
+@app.route('/search-cars', methods=['GET'])
+def search_cars():
+    try:
+        query = request.args.get('query', '').strip()
+        # Realizar búsqueda en la colección 'cars'
+        search_result = list(db.cars.find({
+            '$or': [
+                {'brand': {'$regex': query, '$options': 'i'}},
+                {'model': {'$regex': query, '$options': 'i'}},
+                {'year': {'$regex': query}},
+                {'price': {'$regex': query}}
+            ]
+        }, {'_id': 0}))
+
+        return render_template('index.html', cars=search_result, car_to_edit=None, error=None)
+    except Exception as e:
+        print("Error durante la búsqueda:", e)
+        return render_template('index.html', cars=[], car_to_edit=None, error="Error durante la búsqueda.")
 
 if __name__ == '__main__':
     app.run(debug=True)
