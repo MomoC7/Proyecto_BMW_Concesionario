@@ -6,8 +6,31 @@
     <link rel="stylesheet" href="/static/styles.css">
     <title>BMW Concesionario</title>
 </head>
+
+<script>
+    // Ocultar automáticamente las alertas después de 5 segundos
+    setTimeout(() => {
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(alert => {
+            alert.classList.add('alert-hidden'); // Aplica la clase de ocultación
+        });
+    }, 5000); // 5000 ms = 5 segundos
+</script>
+
 <body>
     <h1>Bienvenido al concesionario de BMW</h1>
+
+    <div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
     
     <!-- Mensaje de error -->
     {% if error %}
@@ -108,13 +131,13 @@
 <!-- Paginación -->
 <div>
     {% if page > 1 %}
-        <a href="/?page={{ page - 1 }}&sort={{ sort }}" class="pagination-button">Anterior</a>
+    <a href="/?page={{ page - 1 }}&sort=brand" class="pagination-button">Anterior</a>
     {% endif %}
     {% for p in range(1, total_pages + 1) %}
         <a href="/?page={{ p }}&sort={{ sort }}" class="pagination-button" {% if p == page %}style="font-weight: bold;"{% endif %}>{{ p }}</a>
     {% endfor %}
     {% if page < total_pages %}
-        <a href="/?page={{ page + 1 }}&sort={{ sort }}" class="pagination-button">Siguiente</a>
+    <a href="/?page={{ page + 1 }}&sort=brand" class="pagination-button">Siguiente</a>
     {% endif %}
 </div>
 

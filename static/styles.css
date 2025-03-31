@@ -161,3 +161,40 @@ input[type="text"]:focus {
 .pagination-button:hover {
     background-color: #155ab6;
 }
+
+/* Estilos para alertas dinámicas */
+.alert {
+    padding: 10px;
+    margin: 15px auto;
+    width: 80%; /* Ajusta al tamaño del contenedor */
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombras ligeras para destacar */
+}
+
+/* Alerta de éxito */
+.alert-success {
+    background-color: #d4edda; /* Fondo verde claro */
+    color: #155724; /* Texto verde oscuro */
+    border: 1px solid #c3e6cb; /* Borde verde */
+}
+
+/* Alerta de error */
+.alert-error {
+    background-color: #f8d7da; /* Fondo rojo claro */
+    color: #721c24; /* Texto rojo oscuro */
+    border: 1px solid #f5c6cb; /* Borde rojo */
+}
+
+/* Transiciones para una experiencia fluida */
+.alert {
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Efecto para mostrar/ocultar alertas */
+}
+
+.alert-hidden {
+    opacity: 0; /* Oculta la alerta */
+    transform: translateY(-20px); /* Mueve la alerta hacia arriba */
+    pointer-events: none; /* Evita que sea interactiva cuando está oculta */
+}
