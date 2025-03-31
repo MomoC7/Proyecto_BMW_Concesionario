@@ -8,7 +8,13 @@
 </head>
 <body>
     <h1>Bienvenido al concesionario de BMW</h1>
-    <br>
+    
+    <!-- Mensaje de error -->
+    {% if error %}
+    <div class="error-message">
+        {{ error }}
+    </div>
+    {% endif %}
     
     <!-- Formulario para agregar autos -->
     <h2>Agregar Autos</h2>
@@ -28,10 +34,10 @@
         <button type="submit">Agregar Auto</button>
     </form>
     <br>
-    <br>
     
     <!-- Tabla para mostrar autos registrados -->
     <h2>Autos Registrados</h2>
+    <br>
     <table border="1">
         <tr>
             <th>Marca</th>
@@ -67,10 +73,8 @@
         </tr>
         {% endfor %}
     </table>
-    <br>
-    <br>
-    
-    <!-- Formulario para editar autos -->
+
+    <!-- Formulario para editar autos (opcional) -->
     {% if car_to_edit %}
     <h2>Editar Auto</h2>
     <form action="/update-car" method="POST">

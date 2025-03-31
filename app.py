@@ -8,22 +8,34 @@ db = connect_to_db()
 def index():
     # Obtener autos de MongoDB
     cars = list(db.cars.find({}, {'_id': 0}))
-    return render_template('index.html', cars=cars, car_to_edit=None)
+    return render_template('index.html', cars=cars, car_to_edit=None, error=None)
 
 @app.route('/add-car', methods=['POST'])
 def add_car():
     try:
-        # Obtener datos del formulario
+        # Validar que los campos no estén vacíos
+        brand = request.form['brand'].strip()
+        model = request.form['model'].strip()
+        year = request.form['year'].strip()
+        price = request.form['price'].strip()
+
+        # Validar datos
+        if not brand or not model or not year.isdigit() or not price.replace('.', '', 1).isdigit():
+            raise ValueError("Datos inválidos: asegúrate de ingresar datos válidos.")
+
+        # Preparar datos validados
         car_data = {
-            'brand': request.form['brand'],
-            'model': request.form['model'],
-            'year': int(request.form['year']),
-            'price': float(request.form['price'])
+            'brand': brand,
+            'model': model,
+            'year': int(year),
+            'price': float(price)
         }
-        # Insertar datos en la colección de MongoDB
         db.cars.insert_one(car_data)
         print("Auto agregado con éxito:", car_data)
         return redirect('/')
+    except ValueError as ve:
+        print("Error de validación:", ve)
+        return render_template('index.html', cars=list(db.cars.find({}, {'_id': 0})), error=str(ve), car_to_edit=None)
     except Exception as e:
         print("Error al agregar auto:", e)
         return "Error al agregar auto", 500
@@ -40,7 +52,7 @@ def edit_car():
         }
         # Renderizar la página con el formulario de edición
         cars = list(db.cars.find({}, {'_id': 0}))
-        return render_template('index.html', cars=cars, car_to_edit=current_data)
+        return render_template('index.html', cars=cars, car_to_edit=current_data, error=None)
     except Exception as e:
         print("Error al cargar edición:", e)
         return "Error al cargar edición", 500
