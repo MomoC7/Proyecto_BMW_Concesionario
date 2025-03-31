@@ -17,6 +17,18 @@
     }, 5000); // 5000 ms = 5 segundos
 </script>
 
+<style>
+    h1 {
+        all: unset;
+        color: rgb(0, 135, 255); /* Color del texto */
+        font-size: 32px; /* Tamaño del texto */
+        text-shadow: 
+            -1px -1px 0px black, /* Sombra hacia arriba izquierda */
+            1px -1px 0px black,  /* Sombra hacia arriba derecha */
+            -1px 1px 0px black,  /* Sombra hacia abajo izquierda */
+            1px 1px 0px black;   /* Sombra hacia abajo derecha */
+    }
+</style>
 <body>
     <h1>Bienvenido al concesionario de BMW</h1>
 
@@ -40,6 +52,7 @@
     {% endif %}
     
     <!-- Formulario para agregar autos -->
+     <br>
     <h2>Agregar Autos</h2>
     <form action="/add-car" method="POST">
         <label for="brand">Marca:</label>

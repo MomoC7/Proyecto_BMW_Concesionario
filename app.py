@@ -10,6 +10,7 @@ app.secret_key = 'tu_clave_secreta'  # Requerido para usar flash
 def index():
     try:
         sort = request.args.get('sort', 'brand')  # Valor por defecto: ordenar por marca
+        print(f"Campo de ordenamiento recibido: {sort}")
         page = int(request.args.get('page', 1))  # Página actual
         items_per_page = 5
         skip = (page - 1) * items_per_page
@@ -17,9 +18,9 @@ def index():
         # Ordenar los autos según el parámetro 'sort'
         cars = list(
         db.cars.find({}, {'_id': 0})
-        .sort([('brand', 1), ('_id', 1)])  # Ordenar por marca, luego por _id
-        .skip((page - 1) * items_per_page)  # Saltar registros según la página actual
-        .limit(items_per_page)  # Limitar a la cantidad de autos por página
+        .sort([(sort, 1), ('_id', 1)])  # Usa el valor dinámico de 'sort'
+        .skip(skip)
+        .limit(items_per_page)
 )
         total_cars = db.cars.count_documents({})
         total_pages = (total_cars + items_per_page - 1) // items_per_page
