@@ -1,97 +1,116 @@
-/* Estilo general */
+/* General Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    margin: 0;
+    font-family: Arial, sans-serif;
+    margin: 10px;
     padding: 0;
-    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+    text-align: center; /* Centra los objetos en la página */
 }
 
-/* Encabezados */
-h1, h2 {
-    text-align: center;
-    color: #0056b3;
+h1 {
+    color: #1a73e8;
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
-/* Contenedor principal */
-table {
-    margin: 20px auto;
-    border-collapse: collapse;
-    width: 90%;
-    max-width: 800px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+h2 {
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 10px;
 }
 
-/* Estilos para la tabla */
-th, td {
+/* Form Styles */
+form {
+    margin: 0 auto; /* Centra el formulario */
     padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: inline-block; /* Hace que ocupe solo su tamaño necesario */
+}
+
+label {
+    display: inline-block;
+    width: 100px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+input {
+    margin: 5px 0;
+    padding: 5px;
+    width: calc(100% - 12px);
+    max-width: 250px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    background-color: #155ab6;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Table Styles: EXACTAMENTE IGUAL */
+table {
+    width: 50%;
+    border-collapse: collapse;
+    margin-left: 25%;
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+th, td {
+    padding: 8px 10px;
     text-align: center;
     border: 1px solid #ddd;
 }
 
 th {
-    background-color: #0056b3;
-    color: #fff;
-    text-transform: uppercase;
+    background-color: #1a73e8;
+    color: white;
     font-weight: bold;
+    font-size: 12px;
+}
+
+td {
+    font-size: 12px;
 }
 
 tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #f4f6f9;
 }
 
-tr:hover {
-    background-color: #f1f1f1;
-}
-
-/* Formulario */
-form {
-    margin: 20px auto;
-    padding: 20px;
-    width: 90%;
-    max-width: 600px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-label {
-    display: block;
-    margin: 10px 0 5px;
-    font-weight: bold;
-    color: #333;
-}
-
-input[type="text"], input[type="number"] {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #0056b3;
-    color: #fff;
+/* Button Styles for Actions */
+form button {
+    margin-bottom: 5px;
+    padding: 5px 8px;
+    font-size: 12px;
+    border-radius: 3px;
     border: none;
-    border-radius: 4px;
-    text-transform: uppercase;
-    font-weight: bold;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #003c82;
+form button[style*="red"] {
+    background-color: #e74c3c;
 }
 
-/* Adaptabilidad */
-@media (max-width: 768px) {
-    table, form {
-        width: 100%;
-    }
+form button[style*="red"]:hover {
+    background-color: #c0392b;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }

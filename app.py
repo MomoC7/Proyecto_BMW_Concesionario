@@ -70,5 +70,23 @@ def update_car():
         print("Error al actualizar auto:", e)
         return "Error al actualizar auto", 500
 
+@app.route('/delete-car', methods=['POST'])
+def delete_car():
+    try:
+        # Datos del auto a eliminar
+        car_data = {
+            'brand': request.form['brand'],
+            'model': request.form['model'],
+            'year': int(request.form['year']),
+            'price': float(request.form['price'])
+        }
+        # Eliminar el auto de la base de datos
+        db.cars.delete_one(car_data)
+        print("Auto eliminado con éxito:", car_data)
+        return redirect('/')
+    except Exception as e:
+        print("Error al eliminar auto:", e)
+        return "Error al eliminar auto", 500
+
 if __name__ == '__main__':
     app.run(debug=True)

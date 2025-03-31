@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Bienvenido al concesionario de BMW</h1>
+    <br>
     
     <!-- Formulario para agregar autos -->
     <h2>Agregar Autos</h2>
@@ -27,10 +28,10 @@
         <button type="submit">Agregar Auto</button>
     </form>
     <br>
+    <br>
     
     <!-- Tabla para mostrar autos registrados -->
     <h2>Autos Registrados</h2>
-    <br>
     <table border="1">
         <tr>
             <th>Marca</th>
@@ -54,10 +55,20 @@
                     <input type="hidden" name="price" value="{{ car.price }}">
                     <button type="submit">Editar</button>
                 </form>
+                <!-- Botón para eliminar -->
+                <form action="/delete-car" method="POST">
+                    <input type="hidden" name="brand" value="{{ car.brand }}">
+                    <input type="hidden" name="model" value="{{ car.model }}">
+                    <input type="hidden" name="year" value="{{ car.year }}">
+                    <input type="hidden" name="price" value="{{ car.price }}">
+                    <button type="submit" style="background-color: red; color: white;">Eliminar</button>
+                </form>
             </td>
         </tr>
         {% endfor %}
     </table>
+    <br>
+    <br>
     
     <!-- Formulario para editar autos -->
     {% if car_to_edit %}
