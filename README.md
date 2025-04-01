@@ -19,7 +19,7 @@
 <br>
 <h2 align="center">📊Diagrama de casos de uso📊</h2> 
 <br>
-<p align="center">Consulta el diagrama en el archivo reubicado en: ![Diagrama](static/img/Diagrama.png)</p>
+<p align="center">Consulta el diagrama en el archivo reubicado en: ![DCU](static/img/DCU.png)</p>
 
 **<p align="center">🛠️Tecnologías utilizadas🛠️** <br><br>.💻.<br><br>
   📌**Backend:** Flask (Python). <br>➖<br>
