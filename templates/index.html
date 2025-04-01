@@ -27,10 +27,30 @@
             1px -1px 0px black,  /* Sombra hacia arriba derecha */
             -1px 1px 0px black,  /* Sombra hacia abajo izquierda */
             1px 1px 0px black;   /* Sombra hacia abajo derecha */
+            text-decoration: underline 1px;
     }
 </style>
 <body>
-    <h1>Bienvenido al concesionario de BMW</h1>
+    <!-- Barra de navegación -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="#inicio">
+                <img src="/static/img/LogoBMW.jpg" alt="BMW_Logo">
+            </a>
+            <span> <span id="texto1">|</span> El placer de conducir</span>
+        </div>
+        <nav>
+            <ul class="menu">
+                <li><a href="#addcar">Agregar autos</a></li>
+                <li><a href="#search">Búsqueda y filtro</a></li>
+                <li><a href="#registros">Autos registrados</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="eltit">
+        <h1 id="inicio">Bienvenido al concesionario de BMW</h1>
+    </div>
 
     <div>
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -52,8 +72,8 @@
     {% endif %}
     
     <!-- Formulario para agregar autos -->
-     <br>
-    <h2>Agregar Autos</h2>
+    <br>
+    <h2 id="addcar">Agregar Autos</h2>
     <form action="/add-car" method="POST">
         <label for="brand">Marca:</label>
         <input type="text" id="brand" name="brand" required><br>
@@ -70,89 +90,94 @@
         <button type="submit">Agregar Auto</button>
     </form>
     <br>
+    <br>
     
     <!-- Tabla para mostrar autos registrados -->
-    <h2>Autos Registrados</h2>
+    <h2 id="search">Formularios de búsqueda y filtro</h2>
 
-<!-- Formulario de búsqueda -->
-<form action="/search-cars" method="GET" style="margin-bottom: 20px;">
-    <input type="text" name="query" placeholder="Buscar autos..." required style="width: 200px; padding: 5px;">
-    <button type="submit">Buscar</button>
-</form>
+    <!-- Formulario de búsqueda -->
+    <div id="divByF">
+        <form action="/search-cars" method="GET" style="margin-bottom: 20px;">
+            <input type="text" name="query" placeholder="Buscar autos..." required style="width: 200px; padding: 5px;">
+            <button type="submit">Buscar</button>
+        </form>
 
-<br>
+        <br>
 
-<!-- Formulario para filtrar autos por rango de precio -->
-<form action="/filter-by-price" method="GET" style="margin-bottom: 20px;">
-    <label for="min_price">Precio mínimo:</label>
-    <input type="number" id="min_price" name="min_price" required style="width: 100px; padding: 5px;">
+        <!-- Formulario para filtrar autos por rango de precio -->
+        <form action="/filter-by-price" method="GET" style="margin-bottom: 20px;">
+            <label for="min_price">Precio mínimo:</label>
+            <input type="number" id="min_price" name="min_price" required style="width: 100px; padding: 5px;">
 
-    <label for="max_price">Precio máximo:</label>
-    <input type="number" id="max_price" name="max_price" required style="width: 100px; padding: 5px;">
+            <label for="max_price">Precio máximo:</label>
+            <input type="number" id="max_price" name="max_price" required style="width: 100px; padding: 5px;">
 
-    <button type="submit">Filtrar</button>
-</form>
+            <button type="submit">Filtrar</button>
+        </form>
+    </div>
 
-<br>
-<br>
+    <br>
+    <br>
 
-<!-- Botones para ordenar -->
-<div style="margin-bottom: 10px;">
-    <a href="/?sort=brand" class="pagination-button">Ordenar por Marca</a>
-    <a href="/?sort=model" class="pagination-button">Ordenar por Modelo</a>
-    <a href="/?sort=year" class="pagination-button">Ordenar por Año</a>
-    <a href="/?sort=price" class="pagination-button">Ordenar por Precio</a>
-</div>
+    <h2 id="registros">Autos registrados</h2>
 
-    <table border="1">
-        <tr>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>Año</th>
-            <th>Precio</th>
-            <th>Acciones</th>
-        </tr>
-        {% for car in cars %}
-        <tr>
-            <td>{{ car.brand }}</td>
-            <td>{{ car.model }}</td>
-            <td>{{ car.year }}</td>
-            <td>{{ car.price }}</td>
-            <td>
-                <!-- Botón para editar -->
-                <form action="/edit-car" method="POST">
-                    <input type="hidden" name="brand" value="{{ car.brand }}">
-                    <input type="hidden" name="model" value="{{ car.model }}">
-                    <input type="hidden" name="year" value="{{ car.year }}">
-                    <input type="hidden" name="price" value="{{ car.price }}">
-                    <button type="submit">Editar</button>
-                </form>
-                <!-- Botón para eliminar -->
-                <form action="/delete-car" method="POST">
-                    <input type="hidden" name="brand" value="{{ car.brand }}">
-                    <input type="hidden" name="model" value="{{ car.model }}">
-                    <input type="hidden" name="year" value="{{ car.year }}">
-                    <input type="hidden" name="price" value="{{ car.price }}">
-                    <button type="submit" style="background-color: red; color: white;">Eliminar</button>
-                </form>
-            </td>
-        </tr>
+    <!-- Botones para ordenar -->
+    <div style="margin-bottom: 10px;">
+        <a href="/?sort=brand" class="pagination-button">Ordenar por Marca</a>
+        <a href="/?sort=model" class="pagination-button">Ordenar por Modelo</a>
+        <a href="/?sort=year" class="pagination-button">Ordenar por Año</a>
+        <a href="/?sort=price" class="pagination-button">Ordenar por Precio</a>
+    </div>
+
+        <table border="1">
+            <tr>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Año</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+            {% for car in cars %}
+            <tr>
+                <td>{{ car.brand }}</td>
+                <td>{{ car.model }}</td>
+                <td>{{ car.year }}</td>
+                <td>{{ car.price }}</td>
+                <td>
+                    <!-- Botón para editar -->
+                    <form action="/edit-car" method="POST">
+                        <input type="hidden" name="brand" value="{{ car.brand }}">
+                        <input type="hidden" name="model" value="{{ car.model }}">
+                        <input type="hidden" name="year" value="{{ car.year }}">
+                        <input type="hidden" name="price" value="{{ car.price }}">
+                        <button type="submit">Editar</button>
+                    </form>
+                    <!-- Botón para eliminar -->
+                    <form action="/delete-car" method="POST">
+                        <input type="hidden" name="brand" value="{{ car.brand }}">
+                        <input type="hidden" name="model" value="{{ car.model }}">
+                        <input type="hidden" name="year" value="{{ car.year }}">
+                        <input type="hidden" name="price" value="{{ car.price }}">
+                        <button type="submit" style="background-color: red; color: white;">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    <br>
+    <!-- Controles de paginación -->
+    <!-- Paginación -->
+    <div>
+        {% if page > 1 %}
+        <a href="/?page={{ page - 1 }}&sort=brand" class="pagination-button">Anterior</a>
+        {% endif %}
+        {% for p in range(1, total_pages + 1) %}
+            <a href="/?page={{ p }}&sort={{ sort }}" class="pagination-button" {% if p == page %}style="font-weight: bold;"{% endif %}>{{ p }}</a>
         {% endfor %}
-    </table>
-<br>
-<!-- Controles de paginación -->
-<!-- Paginación -->
-<div>
-    {% if page > 1 %}
-    <a href="/?page={{ page - 1 }}&sort=brand" class="pagination-button">Anterior</a>
-    {% endif %}
-    {% for p in range(1, total_pages + 1) %}
-        <a href="/?page={{ p }}&sort={{ sort }}" class="pagination-button" {% if p == page %}style="font-weight: bold;"{% endif %}>{{ p }}</a>
-    {% endfor %}
-    {% if page < total_pages %}
-    <a href="/?page={{ page + 1 }}&sort=brand" class="pagination-button">Siguiente</a>
-    {% endif %}
-</div>
+        {% if page < total_pages %}
+        <a href="/?page={{ page + 1 }}&sort=brand" class="pagination-button">Siguiente</a>
+        {% endif %}
+    </div>
 
     <!-- Formulario para editar autos (opcional) -->
     {% if car_to_edit %}
@@ -179,5 +204,30 @@
         <button type="submit">Actualizar Auto</button>
     </form>
     {% endif %}
+
+    <script>
+        document.querySelectorAll('.menu a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1); // Obtiene el ID
+                const targetSection = document.getElementById(targetId);
+                const offset = document.querySelector('.navbar').offsetHeight; // Altura de la barra
+                window.scrollTo({
+                    top: targetSection.offsetTop - offset, // Ajusta para que no quede tapado
+                    behavior: 'smooth' // Desplazamiento suave
+                });
+            });
+        });
+        document.querySelector('.logo a').addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetSection = document.getElementById('inicio');
+            const offset = document.querySelector('.navbar').offsetHeight; // Altura de la barra
+            window.scrollTo({
+                top: targetSection.offsetTop - offset, // Ajusta para que no quede tapado
+                behavior: 'smooth' // Desplazamiento suave
+            });
+        });
+    </script>
+
 </body>
 </html>
