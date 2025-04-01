@@ -19,7 +19,7 @@
 <br>
 <h2 align="center">📊Diagrama de casos de uso📊</h2> 
 <br>
-<p align="center">Consulta el diagrama en el archivo reubicado en: static/Captura%20de%20pantalla%202025-03-31%20153225.png.</p>
+<p align="center">Consulta el diagrama en el archivo reubicado en: ![Diagrama](static/img/Diagrama.png)</p>
 
 **<p align="center">🛠️Tecnologías utilizadas🛠️** <br><br>.💻.<br><br>
   📌**Backend:** Flask (Python). <br>➖<br>
@@ -59,7 +59,7 @@
 
 <h2 align="center">📸Capturas de pantalla📸</h2> 
 
-**<p align="center">Página principal del sistema: static/img/Captura%20de%20pantalla%202025-03-31%20162940.png**</p>
+**<p align="center">Página principal del sistema: ![Main Page](static/img/MainPage.png)**</p>
 
 <br>
 <br>
