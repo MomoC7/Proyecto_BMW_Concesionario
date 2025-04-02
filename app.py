@@ -37,18 +37,18 @@ def add_car():
         # Validar que los campos no estén vacíos
         brand = request.form['brand'].strip()
         model = request.form['model'].strip()
-        year = request.form['year'].strip()
+        yearm = request.form['yearm'].strip()
         price = request.form['price'].strip()
 
         # Validar datos
-        if not brand or not model or not year.isdigit() or not price.replace('.', '', 1).isdigit():
+        if not brand or not model or not yearm.isdigit() or not price.replace('.', '', 1).isdigit():
             raise ValueError("Datos inválidos: asegúrate de ingresar datos válidos.")
 
         # Preparar datos validados
         car_data = {
             'brand': brand,
             'model': model,
-            'year': int(year),
+            'yearm': int(yearm),
             'price': float(price)
         }
         db.cars.insert_one(car_data)
@@ -70,7 +70,7 @@ def edit_car():
         current_data = {
             'brand': request.form['brand'],
             'model': request.form['model'],
-            'year': int(request.form['year']),
+            'yearm': int(request.form['yearm']),
             'price': float(request.form['price'])
         }
         # Renderizar la página con el formulario de edición
@@ -87,25 +87,32 @@ def update_car():
         current_data = {
             'brand': request.form['brand'],
             'model': request.form['model'],
-            'year': int(request.form['year']),
+            'yearm': int(request.form['yearm']),
             'price': float(request.form['price'])
         }
         # Datos nuevos que reemplazarán al auto actual
         new_data = {
             'brand': request.form['new_brand'],
             'model': request.form['new_model'],
-            'year': int(request.form['new_year']),
+            'yearm': int(request.form['new_yearm']),
             'price': float(request.form['new_price'])
         }
+
         # Actualizar el auto en MongoDB
-        db.cars.update_one(current_data, {'$set': new_data})
-        print(f"Auto actualizado: {current_data} -> {new_data}")
+        result = db.cars.update_one(current_data, {'$set': new_data})
+        print(f"Datos actuales: {current_data}")
+        print(f"Nuevos datos: {new_data}")
+
+        # Validar si se realizó la actualización
+        if result.matched_count == 0:
+            flash("No se encontró el auto especificado para actualizar.", "warning")
+        elif result.modified_count == 0:
+            flash("Los datos no se modificaron porque no hubo cambios.", "info")
+        else:
+            flash(f"El auto {current_data['brand']} - {current_data['model']} se actualizó correctamente.", "success")
         
-        # Mensaje de éxito
-        flash(f"El auto {current_data['brand']} - {current_data['model']} se actualizó correctamente.", "success")
         return redirect('/')
     except Exception as e:
-        # Mensaje de error general
         flash("Error: No se pudo actualizar el auto. Intenta de nuevo.", "error")
         print("Error al actualizar auto:", e)
         return redirect('/')
@@ -117,7 +124,7 @@ def delete_car():
         car_data = {
             'brand': request.form['brand'],
             'model': request.form['model'],
-            'year': int(request.form['year']),
+            'yearm': int(request.form['yearm']),
             'price': float(request.form['price'])
         }
         # Eliminar el auto de la base de datos
@@ -142,7 +149,7 @@ def search_cars():
             '$or': [
                 {'brand': {'$regex': query, '$options': 'i'}},
                 {'model': {'$regex': query, '$options': 'i'}},
-                {'year': {'$regex': query}},
+                {'yearm': {'$regex': query}},
                 {'price': {'$regex': query}}
             ]
         }, {'_id': 0}))

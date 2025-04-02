@@ -21,7 +21,6 @@ h2 {
     color: #e9e9e9;
     font-size: 21px;
     margin-bottom: 10px;
-    text-decoration: underline 1px;
 }
 
 /* Form Styles */
@@ -218,11 +217,12 @@ input[type="text"]:focus {
 
 /* Estilización de la barra de navegación */
 .navbar {
+    border-bottom: solid 1px white;
     position: fixed; /* Barra fija */
     top: 0; /* Posición superior */
     left: 0; /* Alineada a la izquierda */
     width: 100%; /* Abarcar el ancho completo */
-    background-color: #333; /* Fondo oscuro */
+    background-color: #1b1943; /* Fondo oscuro */
     padding: 10px 20px;
     display: flex; /* Activar flexbox */
     align-items: center; /* Alinear verticalmente el contenido */

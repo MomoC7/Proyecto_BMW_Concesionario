@@ -27,7 +27,6 @@
             1px -1px 0px black,  /* Sombra hacia arriba derecha */
             -1px 1px 0px black,  /* Sombra hacia abajo izquierda */
             1px 1px 0px black;   /* Sombra hacia abajo derecha */
-            text-decoration: underline 1px;
     }
 </style>
 <body>
@@ -81,8 +80,8 @@
         <label for="model">Modelo:</label>
         <input type="text" id="model" name="model" required><br>
 
-        <label for="year">Año:</label>
-        <input type="number" id="year" name="year" required><br>
+        <label for="yearm">Año:</label>
+        <input type="number" id="yearm" name="yearm" required><br>
 
         <label for="price">Precio:</label>
         <input type="number" id="price" name="price" required><br>
@@ -125,7 +124,7 @@
     <div style="margin-bottom: 10px;">
         <a href="/?sort=brand" class="pagination-button">Ordenar por Marca</a>
         <a href="/?sort=model" class="pagination-button">Ordenar por Modelo</a>
-        <a href="/?sort=year" class="pagination-button">Ordenar por Año</a>
+        <a href="/?sort=yearm" class="pagination-button">Ordenar por Año</a>
         <a href="/?sort=price" class="pagination-button">Ordenar por Precio</a>
     </div>
 
@@ -141,14 +140,14 @@
             <tr>
                 <td>{{ car.brand }}</td>
                 <td>{{ car.model }}</td>
-                <td>{{ car.year }}</td>
+                <td>{{ car.yearm }}</td>
                 <td>{{ car.price }}</td>
                 <td>
                     <!-- Botón para editar -->
                     <form action="/edit-car" method="POST">
                         <input type="hidden" name="brand" value="{{ car.brand }}">
                         <input type="hidden" name="model" value="{{ car.model }}">
-                        <input type="hidden" name="year" value="{{ car.year }}">
+                        <input type="hidden" name="yearm" value="{{ car.yearm }}">
                         <input type="hidden" name="price" value="{{ car.price }}">
                         <button type="submit">Editar</button>
                     </form>
@@ -156,7 +155,7 @@
                     <form action="/delete-car" method="POST">
                         <input type="hidden" name="brand" value="{{ car.brand }}">
                         <input type="hidden" name="model" value="{{ car.model }}">
-                        <input type="hidden" name="year" value="{{ car.year }}">
+                        <input type="hidden" name="yearm" value="{{ car.yearm }}">
                         <input type="hidden" name="price" value="{{ car.price }}">
                         <button type="submit" style="background-color: red; color: white;">Eliminar</button>
                     </form>
@@ -189,8 +188,8 @@
         <label for="new_model">Modelo:</label>
         <input type="text" id="new_model" name="new_model" value="{{ car_to_edit.model }}" required><br>
 
-        <label for="new_year">Año:</label>
-        <input type="number" id="new_year" name="new_year" value="{{ car_to_edit.year }}" required><br>
+        <label for="new_yearm">Año:</label>
+        <input type="number" id="new_yearm" name="new_yearm" value="{{ car_to_edit.yearm }}" required><br>
 
         <label for="new_price">Precio:</label>
         <input type="number" id="new_price" name="new_price" value="{{ car_to_edit.price }}" required><br>
@@ -198,7 +197,7 @@
         <!-- Valores actuales como referencia -->
         <input type="hidden" name="brand" value="{{ car_to_edit.brand }}">
         <input type="hidden" name="model" value="{{ car_to_edit.model }}">
-        <input type="hidden" name="year" value="{{ car_to_edit.year }}">
+        <input type="hidden" name="yearm" value="{{ car_to_edit.yearm }}">
         <input type="hidden" name="price" value="{{ car_to_edit.price }}">
 
         <button type="submit">Actualizar Auto</button>
