@@ -12,7 +12,7 @@
 **Paginación inteligente:** Navega cómodamente entre registros sin redundancias.  <br>➖<br>📌
 **Alertas dinámicas:** Feedback visual para acciones exitosas o errores.  <br>➖<br>📌
 **Estilización moderna:** Diseños visualmente atractivos usando CSS responsivo.  <br>➖<br>📌
-**Conexión robusta a MongoDB:** Base de datos conectada vía MongoDB Compass.]  <br>
+**Conexión robusta a MySQL:** Base de datos conectada vía HeidiSQL(MySQL).]  <br>
 (https://github.com/MomoC7/Proyecto_BMW_Concesionario)</p>
 
 <br>
@@ -24,7 +24,7 @@
 
 **<p align="center">🛠️Tecnologías utilizadas🛠️** <br><br>.💻.<br><br>
   📌**Backend:** Flask (Python). <br>➖<br>
-  📌**Base de datos:** MongoDB, gestionado con MongoDB Compass. <br>➖<br>
+  📌**Base de datos:** MySQL, gestionado con HeidiSQL. <br>➖<br>
   📌**Frontend:** HTML y CSS estilizado. <br>➖<br>
   📌**Interactividad:** Mensajes dinámicos con Flash. <br>➖<br>
   📌**Servidor local:** Flask en modo debug. </p>
@@ -37,7 +37,7 @@
 
 **<p align="center">1️⃣. Clona el repositorio:** git clone https://github.com/usuario/bmw-concesionario.git cd bmw-concesionario. <br>➖<br>
 **2️⃣. Instala las dependencias requeridas:** pip install flask pymongo. <br>➖<br>
-**3️⃣. Asegúrate** de tener MongoDB ejecutándose (puerto por defecto: 27017). <br>➖<br>
+**3️⃣. Asegúrate** de tener MySQL ejecutándose (puerto: 3307). <br>➖<br>
 **4️⃣. Lanza la aplicación:** python app.py. <br>➖<br>
 **5️⃣. Abre** tu navegador y ve a http://127.0.0.1:5000.</p>
     
