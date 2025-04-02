@@ -36,7 +36,7 @@
 <br>
 
 **<p align="center">1️⃣. Clona el repositorio:** git clone https://github.com/usuario/bmw-concesionario.git cd bmw-concesionario. <br>➖<br>
-**2️⃣. Instala las dependencias requeridas:** pip install flask pymongo. <br>➖<br>
+**2️⃣. Instala las dependencias requeridas:** pip install Flask-MySQLdb. <br>➖<br>
 **3️⃣. Asegúrate** de tener MySQL ejecutándose (puerto: 3307). <br>➖<br>
 **4️⃣. Lanza la aplicación:** python app.py. <br>➖<br>
 **5️⃣. Abre** tu navegador y ve a http://127.0.0.1:5000.</p>
@@ -76,7 +76,8 @@
 
 **<p align="center">📧Correo electrónico:** juancpm797@gmail.com <br>➖<br>
 **🔑GitHub User:** MomoC7 <br>➖<br>
-**📲Teléfono:** +57 3246014321
+**📲Teléfono:** +57 3246014321 <br>➖<br>
+**💵Nequi:** 3246014321
 </p>
 
 <br>
